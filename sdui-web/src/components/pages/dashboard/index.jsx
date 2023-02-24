@@ -3,18 +3,15 @@ import BuildComponents from "../../templates/Components";
 import { json } from '../../../core/server';
 
 
-const RenderElements = (json) => {
+const renderElements = (json) => {
   console.log(json);
   return json.map((block) => BuildComponents(block));
 };
 
 function Dashboard() {
-
-  const [sample, setSample] = React.useState();
-
   return (
     <>
-      {RenderElements(json)}
+      {renderElements(json)}
     </>
   );
 }

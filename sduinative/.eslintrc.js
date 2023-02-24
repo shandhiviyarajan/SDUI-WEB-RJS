@@ -1,4 +1,5 @@
-// module.exports = {
-//   root: true,
-//   extends: '@react-native-community',
-// };
+export default {
+  root: true,
+  extends: '@react-native-community',
+  'prettier/prettier': 0,
+};

@@ -6,21 +6,19 @@
  */
 
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, Text, View} from 'react-native';
-import {Button} from '@react-native-material/core';
+import {SafeAreaView, ScrollView, StatusBar, Text, TouchableHighlight, View} from 'react-native';
+import Dashboard from './components/screens/dashboard';
 function App() {
   return (
-    <>
-      <SafeAreaView>
-        <ScrollView>
-          <View>
+
+      <SafeAreaView style={{
+        flex:1,
+        backgroundColor:"#ccc"
+      }}>
             <StatusBar />
-            <Button title="Button" onPress={() => alert('🎉🎉🎉')} />
-            <Text>This is sample</Text>
-          </View>
-        </ScrollView>
+            <Dashboard/>
       </SafeAreaView>
-    </>
+
   );
 }
 
