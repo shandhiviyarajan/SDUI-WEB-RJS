@@ -1,8 +1,9 @@
 import React from 'react';
-import { AppBar, Box, HStack, VStack, IconButton, Button, Flex, Spacer } from "@react-native-material/core";
+import { AppBar, Box, HStack, VStack, IconButton, Button, Flex, Spacer, Stack,} from "@react-native-material/core";
 import { ScrollView, SafeAreaView, View, Text} from 'react-native';
-import {LinkComponent, ImageComponent} from './custom_components';
+import {LinkComponent, ImageComponent, ContainerComponent} from './custom_components';
 import mapStyles from '../core/utils/mapStyles';
+import ChartComponent from './chart_component';
 
 //native components
 const NativeComponents = {
@@ -21,14 +22,18 @@ const MaterialComponents = {
     VStack,
     IconButton,
     Button,
-    Box,
-    Grid:Flex,
-    GridItem: Box,
+    Box:View,
+    Grid:Stack,
+    GridItem: View,
+    Container: ContainerComponent,
     Stack: Flex,
     StackItem: Box,
-    Container: Flex,
     Divider: Spacer,
 };
+
+const CustomComponents = {
+    Chart:ChartComponent,
+}
 
 
 const IconComponents = {
@@ -41,11 +46,11 @@ const IconComponents = {
 const mapComponents = {
     ...NativeComponents,
     ...MaterialComponents,
+    ...CustomComponents,
 };
 
 //build components
 function BuildComponents(block) {
-    console.log(block);
   if (typeof mapComponents[block.component] !== 'undefined') {
     return React.createElement(
       mapComponents[block.component],
@@ -57,7 +62,7 @@ function BuildComponents(block) {
       },
       block.children &&
         (typeof block.children === 'string'
-          ? block.children
+          ? <Text>{block.children}</Text>
           : block.children.length && block.children.map(child => BuildComponents(child))),
     );
   }
