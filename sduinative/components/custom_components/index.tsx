@@ -1,30 +1,39 @@
-import { Text } from "@react-native-material/core";
-import React from "react";
-import { Alert, TouchableHighlight, View } from "react-native";
-import isChidrenString  from "../../core/utils/isChildrenString";
-import mapStyles from "../../core/utils/mapStyles";
-import BuildComponents from "../BuildComponents";
 
-function Link(props) {
+import React from "react";
+import isChidrenString  from "../../core/utils/isChildrenString";
+import BuildComponents from "../BuildComponents";
+import { Image, TouchableHighlight, Text, TouchableHighlightProps } from "react-native";
+
+
+//link component
+export const LinkComponent = (props: JSX.IntrinsicAttributes & JSX.IntrinsicClassAttributes<TouchableHighlight> & Readonly<TouchableHighlightProps>) => {
   return (
-    <TouchableHighlight {...props} onPress={
-        props.block.actions && props.block.actions._click && props.block.actions._click
-    }>
+    <TouchableHighlight {...props}>
       {isChidrenString(props.block.children) ? (
         <Text>{props.block.children}</Text>
       ) : <>
         {
-            props.block.children.map(child=>BuildComponents(child))
+            props.block.children.map((child: any)=>BuildComponents(child))
         }
-       <Text>
-         {
-            JSON.stringify(props.block)
-        }
-       </Text>
       </>
       }
     </TouchableHighlight>
   );
 }
 
-export default Link;
+//image component
+export const ImageComponent = (props) => {
+    let source = require(`../../${props.src}`);
+  return (
+   <>
+   <Image source={source}/>
+   <Text>
+    {
+        source
+    }
+   </Text>
+   </>
+
+   
+  );
+}

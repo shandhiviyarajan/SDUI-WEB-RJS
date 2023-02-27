@@ -1,7 +1,7 @@
 import React from 'react';
-import { AppBar, Box, HStack, VStack, IconButton, Button, Flex, } from "@react-native-material/core";
-import { ScrollView, SafeAreaView, View, Text, TouchableHighlight, } from 'react-native';
-import Link from './custom_components';
+import { AppBar, Box, HStack, VStack, IconButton, Button, Flex, Spacer } from "@react-native-material/core";
+import { ScrollView, SafeAreaView, View, Text} from 'react-native';
+import {LinkComponent, ImageComponent} from './custom_components';
 import mapStyles from '../core/utils/mapStyles';
 
 //native components
@@ -11,7 +11,8 @@ const NativeComponents = {
     View,
     Text,
     Title:Text,
-    Link,
+    Link:LinkComponent,
+    Image :ImageComponent,
 };
 //material components
 const MaterialComponents = {
@@ -26,6 +27,7 @@ const MaterialComponents = {
     Stack: Flex,
     StackItem: Box,
     Container: Flex,
+    Divider: Spacer,
 };
 
 

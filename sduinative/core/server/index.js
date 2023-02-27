@@ -8,13 +8,28 @@ const section_blocks = [
     props: {
       container: true,
       spacing: 3,
+      flexDirection:"row",
+      direction:"row"
+
     },
     styles: [
       {
         name: "paddingTop",
         value: 4,
       },
+      {
+        name:"flex",
+        value:1,
+    },
     ],
+    nativeStyles:[   {
+        name: "paddingTop",
+        value: 4,
+      },
+      {
+        name:"flex",
+        value:1,
+    }],
     children: [
       {
         _id: "0000001",
@@ -137,6 +152,10 @@ const section_blocks = [
             ],
           },
         ],
+      },
+      {
+_id:"432532h",
+component:"Divider",
       },
       {
         _id: "0000001",
@@ -764,23 +783,32 @@ const master_layout = [
   },
 ];
 export const json = [{
+    _id:"43242",
+    component:"ScrollView",
+    children:[
+        {
     _id:"432tr",
     component:"Link",
     props:{},
     styles:[],
-    actions:{
-        _click:()=>{
-            Alert.alert("actons")
-        }
-    },
+    actions:{},
     children:[{
         _id:"gj6",
         component:"Text",
         children:"Text string",
-    },
-{
-        _id:"gj6fda",
-        component:"Text",
-        children:"Text string",
+    },{
+        _id:"432i",
+        component:"Image",
+        props:{
+            src:"../../images/card.png",
+        },
+        styles:[
+            {
+                name:"width",
+                value:"100%",
+            }
+        ]
     }],
+}
+    ]
 }];
