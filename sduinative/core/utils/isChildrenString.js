@@ -1,5 +1,9 @@
-const isChidrenString = (children) =>{
+export const isChidrenString = (children) =>{
 return children && (typeof children === "string")
 };
 
-export default isChidrenString;
+
+let text_string = ["Text", "Titlte"];
+export const isTextCompnent = (component) =>{
+    return !text_string.includes(component)
+}

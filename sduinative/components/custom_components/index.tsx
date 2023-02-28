@@ -1,5 +1,5 @@
 import React from "react";
-import isChidrenString from "../../core/utils/isChildrenString";
+import {isChidrenString} from "../../core/utils/isChildrenString";
 import BuildComponents from "../BuildComponents";
 import mapStyles from "../../core/utils/mapStyles";
 import {
@@ -11,7 +11,7 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { Flex } from "@react-native-material/core";
+import { Flex, HStack, VStack, Box, } from "@react-native-material/core";
 
 //link component
 export const LinkComponent = (
@@ -31,7 +31,7 @@ export const LinkComponent = (
 };
 
 //image component
-export const ImageComponent = (props) => {
+export const CustomImageComponent = (props) => {
   let window_width = Dimensions.get("window").width;
   let image_styles = mapStyles(props.block.styles);
   console.log(image_styles);
@@ -47,8 +47,7 @@ export const ImageComponent = (props) => {
   );
 };
 
-
-export const ContainerComponent = (props) => {
+export const CustomContainerComponent = (props) => {
   return (
     <>
       {props.type === "scroll" && (
@@ -77,3 +76,75 @@ export const ContainerComponent = (props) => {
     </>
   );
 };
+
+//Grid component
+export const CustomGridComponent = (props) => {
+  return (
+    <>
+      {props.direction && props.direction === "row" && (
+        <HStack {...props}>
+          {isChidrenString(props.block.children) ? (
+            <Text>{props.block.children}</Text>
+          ) : (
+            <>
+              {props.block.children.map((child: any) => BuildComponents(child))}
+            </>
+          )}
+        </HStack>
+      )}
+
+      {props.direction && props.direction === "column" && (
+        <VStack {...props}>
+          {isChidrenString(props.block.children) ? (
+            <Text>{props.block.children}</Text>
+          ) : (
+            <>
+              {props.block.children.map((child: any) => BuildComponents(child))}
+            </>
+          )}
+        </VStack>
+      )}
+      {!props.direction && (
+        <VStack {...props}>
+          {isChidrenString(props.block.children) ? (
+            <Text>{props.block.children}</Text>
+          ) : (
+            <>
+              {props.block.children.map((child: any) => BuildComponents(child))}
+            </>
+          )}
+        </VStack>
+      )}
+    </>
+  );
+};
+
+//GridItem Component
+export const CustomGridItemComponent = (props) => {
+  return (
+    <>
+ 
+        <Box {...props}>
+          {isChidrenString(props.block.children) ? (
+            <Text>{props.block.children}</Text>
+          ) : (
+            <>
+              {props.block.children.map((child: any) => BuildComponents(child))}
+            </>
+          )}
+        </Box>
+      
+    </>
+  );
+};
+
+
+export const CustomGrid = (props)=>{
+  return (
+    <>
+    
+    
+
+    </>
+  )
+}
