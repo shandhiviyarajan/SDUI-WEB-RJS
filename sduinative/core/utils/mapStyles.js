@@ -1,9 +1,26 @@
 import { Dimensions } from "react-native";
+
+//breakpoint sizes
+const breakpoint_sizes = {
+  xs: 375,
+  sm: 850,
+  md: 980,
+  lg: 1200,
+  xl: 1536,
+};
+//breakpoint names 
+const breakpoint_names = {
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
+};
 //map styles
 export const mapStyles = (styles) => {
   let componentStyles = {};
   styles.forEach((style) => {
-    componentStyles[style.name] = translateStyleProp(style);
+    componentStyles[style.name.replace(/['"]+/g, '')] = translateStyleProp(style);
   });
   return componentStyles;
 };
@@ -15,8 +32,12 @@ const translateStyleProp = (style) => {
 
     //height
 
-    
     //paddings
+
+      case "padding":
+      value = parseInt(style.value);
+
+      break;
     case "paddingTop":
       value = parseInt(style.value);
       break;
@@ -40,14 +61,6 @@ const translateStyleProp = (style) => {
     case "paddingVertical":
       value = parseInt(style.value);
       break;
-
-    //font wight
-    case "fontWeight":
-      value = isNaN(parseInt(style.value))
-        ? style.value
-        : parseInt(style.value);
-
-      break;
     //font size//
     case "fontSize":
       value = parseInt(style.value);
@@ -56,55 +69,31 @@ const translateStyleProp = (style) => {
     //shadow radios
     case "borderRadius":
       value = parseInt(style.value);
+
+       case "width":
+      value = parseInt(style.value);
+
+          case "height":
+      value = parseInt(style.value);
+
+    case "shadow":
   }
 
   return value;
 };
-//map props
-let break_points = ["xl", "lg", "md", "sm", "xs"];
 
-export const mapBreakpointProps = (props) => {
-  let componentProps = {};
-  let breakPointStyles = {};
 
-  let propsArray = (props && Object.entries(props)) || [];
-
-  propsArray.length > 0 &&
-    propsArray.forEach((prop) => {
-      if (break_points.includes(prop[0])) {
-        translateBreakpointProps(prop[0]);
-      }
-    });
-};
-// translate props
-const translateBreakpointProps = (prop) => {
-  console.log(checkDimentions());
-  let device_break_point_width = false;
-
-  if (prop[0] === checkDimentions()) {
-    device_break_point_width = prop[0];
+export const checkBreakpoints = () => {
+  const screen_width = Dimensions.get("window").width;
+  if (screen_width < breakpoint_sizes.xs) {
+    return breakpoint_names.xs;
+  } else if (screen_width <= breakpoint_sizes.sm) {
+     return breakpoint_names.sm;
+  } else if (screen_width <= breakpoint_sizes.md) {
+      return breakpoint_names.md;
+  } else if (screen_width <= breakpoint_sizes.lg) {
+    return breakpoint_names.lg;
+  } else if (screen_width > breakpoint_sizes.xl) {
+     return breakpoint_names.xl;
   }
 };
-
-const checkDimentions = () => {
-  const screen_width = Dimensions.get("screen").width;
-  if (screen_width > 1536) {
-    return "xl";
-  } else if (screen_width > 1200) {
-    return "lg";
-  } else if (screen_width >= 980) {
-    return "md";
-  } else if (screen_width < 768) {
-    return "sm";
-  } else if (screen_width < 600) {
-    return "xs";
-  }
-};
-
-/*
-xs, extra-small: 0px
-sm, small: 600px
-md, medium: 900px
-lg, large: 1200px
-xl, extra-large: 1536px
-*/

@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView, SafeAreaView, View, StatusBar } from "react-native";
+import React from 'react';
+import { ScrollView, SafeAreaView, View, StatusBar } from 'react-native';
 import {
   AppBar,
   Box,
@@ -10,17 +10,20 @@ import {
   Spacer,
   Text,
   Switch,
-} from "@react-native-material/core";
+} from '@react-native-material/core';
 import {
   LinkComponent,
   CustomImageComponent,
   CustomContainerComponent,
   CustomGridItemComponent,
   CustomGridComponent,
-} from "./custom_components";
-import {mapStyles, mapBreakpointProps} from "../core/utils/mapStyles";
-import ChartComponent from "./chart_component";
-import { isTextCompnent } from "../core/utils/isChildrenString";
+  CustomGrid,
+  CustomGridItem,
+  CustomButton,
+} from './custom_components';
+import { mapStyles } from '../core/utils/mapStyles';
+import ChartComponent from './chart_component';
+import { isTextCompnent } from '../core/utils/isChildrenString';
 
 //native components
 const NativeComponents = {
@@ -31,6 +34,8 @@ const NativeComponents = {
   Link: LinkComponent,
   Image: CustomImageComponent,
   StatusBar: StatusBar,
+  List: View,
+  ListItem: View,
 };
 //material components
 const MaterialComponents = {
@@ -38,14 +43,14 @@ const MaterialComponents = {
   HStack,
   VStack,
   IconButton,
-  Button,
   Text,
   Box,
   Switch,
-  Container: CustomContainerComponent, //view
-  Grid: CustomGridComponent, //stack
-  GridItem: CustomGridItemComponent, //box
   Divider: Spacer,
+  Button: CustomButton,
+  Container: CustomContainerComponent, //view
+  Grid: CustomGrid, //Grid
+  GridItem: CustomGridItem, //Griditem
 };
 
 const CustomComponents = {
@@ -64,30 +69,28 @@ const mapComponents = {
   ...CustomComponents,
 };
 
-
-
 //build components
 function BuildComponents(block) {
-  if (typeof mapComponents[block.component] !== "undefined") {
-
-  mapBreakpointProps(block.props);
+  if (typeof mapComponents[block.component] !== 'undefined') {
     return React.createElement(
       mapComponents[block.component],
       {
         key: block._id,
         ...block.props,
         block: block,
-        style: block.styles && mapStyles(block.styles)
+        style: block.styles && mapStyles(block.styles),
       },
       block.children &&
-        (typeof block.children === "string" ? (
-         
-          (isTextCompnent(block.component)) ? block.children : <Text>{block.children}</Text>
-
+      (typeof block.children === 'string' ? (
+        isTextCompnent(block.component) ? (
+          block.children
         ) : (
-          block.children.length &&
-          block.children.map((child) => BuildComponents(child))
-        ))
+          <Text>{block.children}</Text>
+        )
+      ) : (
+        block.children.length &&
+        block.children.map(child => BuildComponents(child))
+      )),
     );
   }
 }

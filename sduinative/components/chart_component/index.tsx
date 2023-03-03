@@ -6,15 +6,18 @@ import { Dimensions, Text, View } from "react-native";
 function ChartComponent(props) {
   return (
 
-      <View
-        style={{
-          paddingHorizontal: 20,
-          alignItems: "center",
-        }}
-      >
-      
-       {
-        props.type ==="line" &&  <LineChart
+    <View
+      style={{
+        flex: 1,
+        paddingHorizontal: 20,
+        marginHorizontal: 20,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+
+      {
+        props.type === "line" && <LineChart
           data={{
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
@@ -58,9 +61,9 @@ function ChartComponent(props) {
             borderRadius: 4,
           }}
         />
-       }
-        {
-        props.type ==="bar" &&  <BarChart
+      }
+      {
+        props.type === "bar" && <BarChart
           data={{
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
@@ -104,8 +107,8 @@ function ChartComponent(props) {
             borderRadius: 4,
           }}
         />
-       }
-      </View>
+      }
+    </View>
 
   );
 }

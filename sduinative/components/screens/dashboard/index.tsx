@@ -1,20 +1,13 @@
-import { json } from '../../../core/server';
+import {json} from '../../../core/server';
 import React from 'react';
 import BuildComponents from '../../BuildComponents';
 
 function Dashboard() {
+  const renderElements = data => {
+    return data.map(block => BuildComponents(block));
+  };
 
-    const renderElements = (json: any)=>{
-      return json.map((block: any) => BuildComponents(block));
-    }
-
-  return (
-  <>
-   {
-    renderElements(json)
-   }
-   </>
-  )
+  return <>{renderElements(json)}</>;
 }
 
-export default Dashboard
+export default Dashboard;

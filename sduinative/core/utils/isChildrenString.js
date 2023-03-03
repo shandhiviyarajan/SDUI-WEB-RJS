@@ -3,7 +3,7 @@ return children && (typeof children === "string")
 };
 
 
-let text_string = ["Text", "Titlte"];
+let text_string = ["Text", "Title"];
 export const isTextCompnent = (component) =>{
-    return !text_string.includes(component)
+    return text_string.includes(component)
 }
