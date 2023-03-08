@@ -342,8 +342,42 @@ const section_content_chart = [
 }
 ];
 
-const section_header = [
+
+const section_content = [
   {
+    _id: "10",
+    name: "Container",
+    component: "Container",
+    props: {
+      maxWidth: "100%",
+      disableGutters: true,
+      fixed: false,
+    },
+
+    styles: [
+      {
+        name: "backgroundColor",
+        value: "#F5F5FD",
+      },
+      {
+        name: "paddingTop",
+        value: 5,
+      },
+      {
+        name: "paddingBottom",
+        value: 5,
+      },
+      {
+        name: "paddingLeft",
+        value: 5,
+      },
+      {
+        name: "paddingRight",
+        value: 5,
+      },
+    ],
+    children: [
+       {
     _id: "1",
     name: "section_header",
     component: "Grid",
@@ -415,42 +449,7 @@ const section_header = [
       },
     ],
   },
-];
-
-const section_content = [
-  {
-    _id: "10",
-    name: "Container",
-    component: "Container",
-    props: {
-      maxWidth: "100%",
-      disableGutters: true,
-      fixed: false,
-    },
-
-    styles: [
-      {
-        name: "backgroundColor",
-        value: "#F5F5FD",
-      },
-      {
-        name: "paddingTop",
-        value: 5,
-      },
-      {
-        name: "paddingBottom",
-        value: 5,
-      },
-      {
-        name: "paddingLeft",
-        value: 5,
-      },
-      {
-        name: "paddingRight",
-        value: 5,
-      },
     ],
-    children: [...section_header, ...section_blocks, ...section_content_chart],
   },
 ];
 const section_nav = [

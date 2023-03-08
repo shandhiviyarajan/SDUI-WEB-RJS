@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Container, Grid, Link, Stack, } from "@mui/material";
 import { ThemeProvider } from '@mui/material/styles';
 import { Typography } from "@mui/material";
@@ -14,8 +15,8 @@ import {
   ArcElement,
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
-import React from "react";
-import SearchComponent from '../../custom_components/search';
+import { MainNavigation, NavItem } from "./custom_components";
+
 
 
 ChartJS.register(
@@ -33,8 +34,9 @@ const ThemeComponents = {
 }
 
 const CustomComponents = {
-  Search: SearchComponent,
   Chart,
+  MainNavigation,
+NavItem,
 };
 
 const CommonComponets = {

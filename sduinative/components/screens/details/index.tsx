@@ -1,16 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
+import TabNavigations from '../../../core/navigation/tabs';
 
-function Details({route}) {
+function Details({ route }) {
   return (
     <View>
       <Text
         style={{
           fontSize: 24,
         }}>
-        {route.user_id}
+        Details
       </Text>
+
     </View>
   );
 }

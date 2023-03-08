@@ -5,15 +5,15 @@ import { mapStyles, checkBreakpoints } from "../../core/utils/mapStyles";
 import {
   Image,
   TouchableHighlight,
-  Text,
   TouchableHighlightProps,
   Dimensions,
   View,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 
-import { Flex, Box, Button, Stack, HStack, VStack } from "@react-native-material/core";
+import { Flex, Box, Button, Stack, HStack, VStack, Text } from "@react-native-material/core";
 import { isLandscape } from "../../core/utils/getOrentation";
 import { useNavigation } from "@react-navigation/native";
 
@@ -82,10 +82,7 @@ export const CustomContainerComponent = (props) => {
 
 //Grid component
 export const CustomGridComponent = (props) => {
-
-
   const style = props.styles && mapStyles(props.styles);
-
   return (
     <>
       {props.direction && props.direction === "row" && (
@@ -296,4 +293,38 @@ export const Link = (props) => {
       )}
     </>
   );
+}
+
+//Main Navigation // Drawer navigation
+export const MainNavigation = (props) => {
+  return (
+    <>
+    </>
+  )
+
+}
+
+//navigation items
+export const NavItem = (props) => {
+  const custom_nav_style = props.block.styles && mapStyles(props.block.styles);
+  const navigation = useNavigation();
+  return (
+    <>
+      <TouchableOpacity {...props} onPress={() => {
+        navigation.navigate(props.block?.route?.url)
+      }} style={custom_nav_style}>
+        <Box>
+          {isChidrenString(props.block.children) ? (
+            <Text style={custom_nav_style}>{props.block.children}</Text>
+          ) : (
+            <>
+              {props.block && props.block.children && props.block.children.map((child: any) => BuildComponents(child))}
+            </>
+          )}
+        </Box>
+
+      </TouchableOpacity>
+
+    </>
+  )
 }

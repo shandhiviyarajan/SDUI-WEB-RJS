@@ -6,7 +6,6 @@ import {
   HStack,
   VStack,
   IconButton,
-  Button,
   Spacer,
   Text,
   Switch,
@@ -15,11 +14,11 @@ import {
   LinkComponent,
   CustomImageComponent,
   CustomContainerComponent,
-  CustomGridItemComponent,
-  CustomGridComponent,
   CustomGrid,
   CustomGridItem,
   CustomButton,
+  MainNavigation,
+  NavItem,
 } from './custom_components';
 import { mapStyles } from '../core/utils/mapStyles';
 import ChartComponent from './chart_component';
@@ -56,6 +55,8 @@ const MaterialComponents = {
 const CustomComponents = {
   Chart: ChartComponent,
 };
+
+
 
 const IconComponents = {
   MdHome: Text,
